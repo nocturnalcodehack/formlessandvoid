@@ -59,9 +59,6 @@ function Navbar() {
   return (
     <nav ref={navbarRef} className="navbar navbar-expand-lg static">
       <div className="container">
-        <a className="logo icon-img-120" href="#">
-          <img src="/dark/assets/imgs/markathas.com.png" alt="logo" />
-        </a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={toggleNavbar} >
           <span className="icon-bar"><i className="fas fa-bars"></i></span>
@@ -70,7 +67,7 @@ function Navbar() {
         <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" href="/public"><span className="rolling-text">Home</span></Link>
+              <Link className="nav-link" href="/"><span className="rolling-text">Home</span></Link>
             </li>
             <li className="nav-item dropdown" onMouseMove={handleDropdownMouseMove} onMouseLeave={handleDropdownMouseLeave}>
               <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span className="rolling-text">Reference</span></a>

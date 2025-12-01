@@ -16,10 +16,9 @@ function Home() {
                 <span className="icon-img-20 mr-10">
                   <img src="/landing-preview/img/star.svg" alt="" />
                 </span>
-                <p style={{color:'yellow'}}>UNDER CONSTRUCTION</p>
               </h1>
-              <h2>markathas.com</h2>
-            <h5>Welcome to markathas.com where we apply data science to interesting questions</h5>
+              <h2>formlessandvoid.com</h2>
+            <h5>Welcome to formlessandvoid where we apply data science to interesting questions</h5>
               <p>This site is dedicated to applying the principles and practices of data science, machine learning
               and generative AI to intriguing problems.  Here you may find some of you own assumptions questioned.</p>
             </div>

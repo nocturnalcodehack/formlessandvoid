@@ -10,15 +10,13 @@ function Footer() {
           <div className="row">
             <div className="col-lg-4">
               <div className="logo">
-                <a>
-                  <img src="/dark/assets/imgs/markathas.com.png" alt="" />
-                </a>
+                <p className="fz-13">© formlessandvoid </p>
               </div>
             </div>
             <div className="col-lg-8">
               <div className="copyright d-flex">
                 <div className="ml-auto">
-                  <p className="fz-13">© 2023 Mark A. Athas </p>
+                  <p className="fz-13">© 2025 formlessandvoid.com </p>
                 </div>
               </div>
             </div>
