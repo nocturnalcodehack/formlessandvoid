@@ -1,0 +1,14 @@
+markathas-nextjs-com/node_modules
+npm-debug.log
+../Dockerfile
+.dockerignore
+.next
+.git
+../.gitignore
+.env.local
+.DS_Store
+/python/.DS_Store
+../.eslintrc.json
+.idea
+out
+python/venv
