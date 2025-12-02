@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 //= Scripts
-import loadBackgroudImages from 'src/common/loadBackgroudImages';
+import loadBackgroundImages from 'src/common/loadBackgroudImages';
 
 function Overlay() {
   useEffect(() => {
-    loadBackgroudImages();
+    loadBackgroundImages();
   }, []);
 
   return (

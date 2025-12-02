@@ -7,7 +7,6 @@ import Layout from 'src/layouts/markathas';
 import Loader from 'src/components/Common/Loader';
 import Title from 'src/components/Corporate/Title';
 import Navbar from 'src/components/Corporate/Navbar';
-import Header from 'src/components/Corporate/HeaderNonHome';
 import Form from 'src/components/InnerPages/Contact/Form';
 import Footer from 'src/components/Corporate/Footer';
 
@@ -21,11 +20,9 @@ function PageContact() {
   return (
     <>
       <Title />
-
       <Loader />
-      <Navbar mainBg />
+      <Navbar />
       <main>
-        <Header />
         <Form />
       </main>
       <Footer />

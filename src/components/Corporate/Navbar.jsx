@@ -70,20 +70,12 @@ function Navbar() {
               <Link className="nav-link" href="/"><span className="rolling-text">Home</span></Link>
             </li>
             <li className="nav-item dropdown" onMouseMove={handleDropdownMouseMove} onMouseLeave={handleDropdownMouseLeave}>
-              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span className="rolling-text">Reference</span></a>
+              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span className="rolling-text">Surveys</span></a>
               <div className="dropdown-menu">
-                <Link className="dropdown-item" href="/dark/page-about">About</Link>
-                <Link className="dropdown-item" href="/dark/page-services">Research</Link>
-                <Link className="dropdown-item" href="/dark/page-contact">Contact</Link>
-              </div>
-            </li>
-            <li className="nav-item dropdown" onMouseMove={handleDropdownMouseMove} onMouseLeave={handleDropdownMouseLeave}>
-              <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span className="rolling-text">Tools</span></a>
-              <div className="dropdown-menu">
-
-                <div className="dropdown-divider"></div>
-                <h6 className="dropdown-header">Survey Tools</h6>
-                <Link className="dropdown-item" href="/survey/admin">Survey Admin</Link>
+                <Link key='urv1' className="dropdown-item" href='/'>placeholder</Link>
+                {/* appData.surveys.map((survey, index) => (
+                  <Link key={index} className="dropdown-item" href={survey.link}>{survey.name}</Link>
+                )) */}
               </div>
             </li>
             <li className="nav-item">

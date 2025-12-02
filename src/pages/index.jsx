@@ -4,7 +4,6 @@ import PageLayout from 'src/components/PageLayout';
 //= Layout
 //import Layout from '@/layouts/markathas';
 
-
 function Home() {
   return (
     <PageLayout>
@@ -12,15 +11,12 @@ function Home() {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="caption text-center">
-              <h1 className="sub-title">
-                <span className="icon-img-20 mr-10">
-                  <img src="/landing-preview/img/star.svg" alt="" />
-                </span>
-              </h1>
-              <h2>formlessandvoid.com</h2>
-            <h5>Welcome to formlessandvoid where we apply data science to interesting questions</h5>
-              <p>This site is dedicated to applying the principles and practices of data science, machine learning
-              and generative AI to intriguing problems.  Here you may find some of you own assumptions questioned.</p>
+            <h2>Welcome to formlessandvoid</h2> <br/>
+              <p>Here we apply interactive survey methods, data science, and anaysis to take your formless
+              hypothesis about persons, places or things and replace that void with with actionable
+                insight.</p> <br/> <br/>
+              <p>We host both public surveys--linked at the menu item above, and private surveys where
+              participants are invited with unique link.</p>
             </div>
           </div>
         </div>

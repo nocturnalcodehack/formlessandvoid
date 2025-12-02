@@ -1,6 +1,4 @@
 import React from 'react';
-//= Data
-import data from "src/data/app-data.json";
 
 function Footer() {
   return (
@@ -16,7 +14,7 @@ function Footer() {
             <div className="col-lg-8">
               <div className="copyright d-flex">
                 <div className="ml-auto">
-                  <p className="fz-13">© 2025 formlessandvoid.com </p>
+                  <p className="fz-13">© {new Date().getFullYear()} formlessandvoid.com </p>
                 </div>
               </div>
             </div>
