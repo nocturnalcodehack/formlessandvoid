@@ -25,6 +25,24 @@ lerna-debug.log*
 
 # env
 *env*
+!.env.example
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# testing
+coverage/
+
+# production
+.vercel
 
 # MS Word
 ~$*
