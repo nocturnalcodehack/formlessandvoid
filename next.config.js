@@ -1,18 +1,24 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
-
 const nextConfig = {
-  reactStrictMode: false,
-  sassOptions: {
-    includePaths: [path.join(__dirname, "css")],
+  reactStrictMode: true,
+  webpack: (config, { isServer }) => {
+    // Fix for Sequelize on the client side
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+        path: false,
+        os: false,
+        stream: false,
+        zlib: false,
+      };
+    }
+    return config;
   },
-  trailingSlash: false,
-  env: {
-    NEXT_PUBLIC_MAINTENANCE: process.env.MAINTENANCE || 'false',
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
+
