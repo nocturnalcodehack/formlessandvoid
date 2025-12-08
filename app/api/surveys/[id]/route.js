@@ -8,9 +8,9 @@ export async function GET(request, { params }) {
     const survey = await Survey.findByPk(id, {
       include: [{
         model: SurveyQuestion,
-        as: 'questions',
-        order: [['sequenceNumber', 'ASC']]
-      }]
+        as: 'questions'
+      }],
+      order: [[{ model: SurveyQuestion, as: 'questions' }, 'sequenceNumber', 'ASC']]
     });
 
     if (!survey) {

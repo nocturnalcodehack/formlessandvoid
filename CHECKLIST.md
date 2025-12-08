@@ -30,7 +30,7 @@
 
 4. [ ] Verify `.env.local` exists and is configured
    ```bash
-   cat .env.local
+   cat .env
    ```
    Should contain:
    - DATABASE_HOST

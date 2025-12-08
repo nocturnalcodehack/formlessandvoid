@@ -9,10 +9,10 @@ if [ ! -d "node_modules" ]; then
     npm install
 fi
 
-# Check if .env.local exists
+# Check if .env exists
 if [ ! -f ".env.local" ]; then
     echo "⚙️  Creating .env.local from template..."
-    cp .env.example .env.local
+    cp .env.example .env
     echo "⚠️  Please update .env.local with your database credentials!"
     exit 1
 fi

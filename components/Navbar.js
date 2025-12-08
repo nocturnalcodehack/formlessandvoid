@@ -13,10 +13,15 @@ export default function Navbar() {
 
   const fetchSurveys = async () => {
     try {
+      console.log('Fetching surveys from /api/surveys...');
       const response = await fetch('/api/surveys');
+      console.log('Response status:', response.status, 'OK:', response.ok);
       if (response.ok) {
         const data = await response.json();
+        console.log('Surveys fetched:', data);
         setSurveys(data);
+      } else {
+        console.error('Failed to fetch surveys, status:', response.status);
       }
     } catch (error) {
       console.error('Error fetching surveys:', error);

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Survey, SurveyQuestion } from '@/models';
+import { Survey } from '@/models';
 import { Op } from 'sequelize';
 
 export async function GET() {
@@ -10,13 +10,19 @@ export async function GET() {
       where: {
         isActive: true,
         isPublic: true,
-        [Op.or]: [
-          { startDate: null },
-          { startDate: { [Op.lte]: now } }
-        ],
-        [Op.or]: [
-          { endDate: null },
-          { endDate: { [Op.gte]: now } }
+        [Op.and]: [
+          {
+            [Op.or]: [
+              { startDate: null },
+              { startDate: { [Op.lte]: now } }
+            ]
+          },
+          {
+            [Op.or]: [
+              { endDate: null },
+              { endDate: { [Op.gte]: now } }
+            ]
+          }
         ]
       },
       attributes: ['surveyId', 'shortName', 'fullName', 'description'],

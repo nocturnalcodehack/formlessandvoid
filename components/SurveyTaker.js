@@ -20,6 +20,7 @@ export default function SurveyTaker({ surveyId }) {
 
   useEffect(() => {
     initializeSurvey();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [surveyId]);
 
   useEffect(() => {
@@ -70,13 +71,26 @@ export default function SurveyTaker({ surveyId }) {
     if (!respondentId) return;
 
     try {
+      // Serialize arrays and objects to JSON string for complex question types
+      let serializedValue;
+      if (Array.isArray(value)) {
+        // For multiselect and multiselect-other: serialize array
+        serializedValue = JSON.stringify(value);
+      } else if (typeof value === 'object' && value !== null) {
+        // For multiple-other with object format: serialize object
+        serializedValue = JSON.stringify(value);
+      } else {
+        // For simple string values
+        serializedValue = value;
+      }
+
       await fetch('/api/responses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           respondentId,
           surveyQuestionId: questionId,
-          responseValue: value,
+          responseValue: serializedValue,
           timeSpentSeconds: Math.floor(timeSpent / 1000),
           visitCount: visitCounts[questionId] || 1
         })
@@ -103,6 +117,18 @@ export default function SurveyTaker({ surveyId }) {
     }));
   };
 
+  const isEmptyAnswer = (value) => {
+    if (value === null || value === undefined) return true;
+    if (Array.isArray(value)) {
+      // Empty array or all entries are empty/null
+      return value.length === 0 || value.every(v =>
+        v === null || v === undefined || (typeof v === 'string' && v.trim() === '')
+      );
+    }
+    if (typeof value === 'string') return value.trim() === '';
+    return false;
+  };
+
   const handleNext = async () => {
     const currentQuestion = survey.questions[currentQuestionIndex];
     const questionId = currentQuestion.surveyQuestionId;
@@ -110,13 +136,16 @@ export default function SurveyTaker({ surveyId }) {
     const currentResponse = responses[questionId];
 
     // Validate required fields
-    if (currentQuestion.isRequired && (!currentResponse || currentResponse.trim() === '')) {
+    if (currentQuestion.isRequired && isEmptyAnswer(currentResponse)) {
       alert('This question is required. Please provide an answer before continuing.');
       return;
     }
 
-    // Save response
-    await saveResponse(questionId, currentResponse || '', timeSpent);
+    // Save response - preserve empty arrays for multiselect, use empty string for others
+    const valueToSave = currentResponse !== undefined && currentResponse !== null
+      ? currentResponse
+      : (currentQuestion.itemType === 'multiselect' || currentQuestion.itemType === 'multiselect-other' ? [] : '');
+    await saveResponse(questionId, valueToSave, timeSpent);
 
     // Move to next question or thank you page
     if (currentQuestionIndex < survey.questions.length - 1) {
@@ -220,7 +249,7 @@ export default function SurveyTaker({ surveyId }) {
 
       <QuestionRenderer
         question={currentQuestion}
-        value={responses[currentQuestion.surveyQuestionId] || ''}
+        value={responses[currentQuestion.surveyQuestionId] || (currentQuestion.itemType === 'multiselect' || currentQuestion.itemType === 'multiselect-other' ? [] : '')}
         onChange={handleResponseChange}
       />
 

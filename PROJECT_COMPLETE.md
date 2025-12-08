@@ -154,7 +154,7 @@ npm install
 # Create PostgreSQL database
 createdb formlessandvoid
 
-# Configure .env.local with your credentials
+# Configure .env with your credentials
 # Then initialize tables
 npm run db:init
 
