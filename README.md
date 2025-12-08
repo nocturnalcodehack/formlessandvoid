@@ -55,7 +55,7 @@ An interactive survey delivery website built with Next.js, React, Bootstrap, Seq
    
    Copy `.env.example` to `.env.local` and update with your database credentials:
    ```bash
-   cp .env.example .env.local
+   cp .env.example .env
    ```
    
    Edit `.env.local`:

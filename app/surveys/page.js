@@ -1,19 +1,37 @@
 import { Container } from 'react-bootstrap';
 import Link from 'next/link';
+import { Survey } from '@/models';
+import { Op } from 'sequelize';
 
 async function getSurveys() {
   try {
-    const baseUrl = process.env.SITE_ROOT || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/surveys`, {
-      cache: 'no-store'
+    const now = new Date();
+
+    const surveys = await Survey.findAll({
+      where: {
+        isActive: true,
+        isPublic: true,
+        [Op.and]: [
+          {
+            [Op.or]: [
+              { startDate: null },
+              { startDate: { [Op.lte]: now } }
+            ]
+          },
+          {
+            [Op.or]: [
+              { endDate: null },
+              { endDate: { [Op.gte]: now } }
+            ]
+          }
+        ]
+      },
+      attributes: ['surveyId', 'shortName', 'fullName', 'description'],
+      order: [['createdAt', 'DESC']]
     });
 
-    if (!response.ok) {
-      return [];
-    }
-
-    const data = await response.json();
-    return data;
+    // Convert Sequelize instances to plain objects for Next.js serialization
+    return surveys.map(survey => survey.toJSON());
   } catch (error) {
     console.error('Error fetching surveys:', error);
     return [];

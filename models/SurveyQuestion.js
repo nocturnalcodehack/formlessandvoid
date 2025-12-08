@@ -29,8 +29,8 @@ const SurveyQuestion = sequelize.define('SurveyQuestion', {
     field: 'question_text'
   },
   itemType: {
-    type: DataTypes.ENUM('text', 'yes-no', 'likert', 'multiple-choice', 'multiple-other'),
-    allowNull: false,
+      type: DataTypes.ENUM('text', 'yes-no', 'likert', 'multiple-choice', 'multiple-other', 'multiselect', 'multiselect-other'),
+      allowNull: false,
     field: 'item_type'
   },
   isRequired: {
